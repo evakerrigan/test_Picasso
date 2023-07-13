@@ -1,11 +1,20 @@
+import { Route, Routes } from "react-router-dom";
+
 import './App.css';
 
-function App() {
+import { NotFound } from "./pages/NotFound/NotFound";
+import { Main } from "./pages/Main/Main";
+import { PostPage } from "./pages/PostPage/PostPage";
 
+function App() {
   return (
-    <>
-      App
-    </>
+    <div className="app">
+      <Routes>
+        <Route path="" element={<Main />} />
+        <Route path="posts/:postId" element={<PostPage />} />
+        <Route path="not-found" element={<NotFound />} />
+      </Routes>
+    </div>
   )
 }
 

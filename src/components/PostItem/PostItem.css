@@ -1,0 +1,19 @@
+.postItem {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  /* box-shadow: 0 0 5px 0 #ccc; */
+}
+.postUserId {
+  font-weight: bold;
+  color: red;
+  padding: 0 10px;
+}
+.postId {
+  font-weight: bold;
+  color: green;
+  padding: 0 10px;
+}
+.postBody {
+  font-size: 7px;
+}
