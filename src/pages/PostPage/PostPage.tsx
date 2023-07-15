@@ -5,7 +5,6 @@ import { AddComment } from "../../components/AddComment/AddComment";
 
 const URL_POSTS = 'https://jsonplaceholder.typicode.com/posts';
 const URL_USERS = 'https://jsonplaceholder.typicode.com/users';
-const URL_COMMENTS = 'https://jsonplaceholder.typicode.com/comments';
 
 type UserInfo = {
   id: number;
