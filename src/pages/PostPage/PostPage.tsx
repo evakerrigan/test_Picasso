@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { AddComment } from "../../components/AddComment/AddComment";
 
 const URL_POSTS = 'https://jsonplaceholder.typicode.com/posts';
 const URL_USERS = 'https://jsonplaceholder.typicode.com/users';
@@ -78,14 +79,15 @@ export const PostPage = () => {
         {
           comments.map((comment) => (
             <div className="comment" key={comment.id} style={{ "border": "1px solid blue" }}>
-              {/* <p>id: {comment.id}</p> */}
               <p>name: {comment.name}</p>
-              {/* <p>email: {comment.email}</p> */}
               <p>body: {comment.body}</p>
             </div>
           ))
         }
       </div>
+
+      <AddComment id={id} />
+
     </div>
   )
 }
