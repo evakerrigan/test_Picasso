@@ -15,7 +15,6 @@ export const Main = () => {
   async function fetchPosts(url: string) {
     const res = await axios.get(url);
     setPosts(res.data);
-    console.log('posts.res.data', res.data);
   }
 
   async function fetchUsers() {

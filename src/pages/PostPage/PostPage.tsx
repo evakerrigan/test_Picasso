@@ -32,7 +32,7 @@ export const PostPage = () => {
 
   const params: any = useParams();
 
-  const id = params.id[1];
+  const id = (params.id).substring(1);
 
   useEffect(() => {
     async function fetchPost(url: string) {
