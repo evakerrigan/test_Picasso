@@ -1,5 +1,7 @@
 import "./PostItem.css";
 
+import { useNavigate } from "react-router-dom";
+
 type PostItemProps = {
   userId: number;
   id: number;
@@ -9,8 +11,10 @@ type PostItemProps = {
 
 export const PostItem = ({ post }: { post: PostItemProps }) => {
 
+  const navigate = useNavigate();
+
   return (
-    <div className="postItem">
+    <div className="postItem" onClick={() => (navigate(`/posts/:${post.id}`))}>
       <span className="postUserId">{post.userId}</span>
       <span className="postId">{post.id}</span>
       <span className="postTitle">{post.title}</span>
