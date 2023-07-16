@@ -1,6 +1,4 @@
-import { NotFound } from "../pages/NotFound/NotFound";
-import { Main } from "../pages/Main/Main";
-import { PostPage } from "../pages/PostPage/PostPage";
+import { NotFound, Main, PostPage } from "../pages";
 
 export const routes = [
   {

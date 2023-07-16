@@ -5,11 +5,7 @@ export const AppRouter = () => {
   return (
     <Routes>
       {routes.map((route) => (
-        <Route
-          key={route.path}
-          path={route.path}
-          Component={route.component}
-        />
+        <Route key={route.path} path={route.path} Component={route.component} />
       ))}
     </Routes>
   );

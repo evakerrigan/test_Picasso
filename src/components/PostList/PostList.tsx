@@ -5,21 +5,18 @@ type PostItemProps = {
   id: number;
   title: string;
   body: string;
-}
+};
 
 type PostListProps = {
   posts: PostItemProps[];
-}
+};
 
-export const PostList = ({posts}: PostListProps) => {
+export const PostList = ({ posts }: PostListProps) => {
   return (
     <div className="PostList">
-      {
-        posts.map((post) => (
-          <PostItem key={post.id} post={post} />
-        ))
-      }
-
+      {posts.map((post) => (
+        <PostItem key={post.id} post={post} />
+      ))}
     </div>
   );
-}
+};
