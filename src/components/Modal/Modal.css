@@ -1,0 +1,14 @@
+.modal {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: green;
+  border-radius: 12px;
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  padding: 50px;
+  top: 70px;
+  left: calc(50% - 125px);
+  bottom: 70px;
+}
