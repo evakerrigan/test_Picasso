@@ -18,7 +18,6 @@ export const Main = (): JSX.Element => {
   async function fetchUsers() {
     const res = await axios.get(URL_USERS);
     setUsers(res.data);
-    console.log("users.res.data", res.data);
   }
 
   const sortPosts = (sort: string) => {
