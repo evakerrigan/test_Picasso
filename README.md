@@ -24,6 +24,12 @@
 ## Running the app
 
 ```bash
+# clone
+$ git clone https://github.com/evakerrigan/test_Picasso.git
+
+# install
+$ npm install
+
 # development
 $ npm run dev
 ```
