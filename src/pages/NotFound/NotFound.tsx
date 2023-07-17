@@ -33,7 +33,8 @@ export const NotFound = () => {
           </Grid>
           <Grid xs={6}>
             <img
-              src="https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569__340.jpg"
+              // src="https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569__340.jpg"
+              src="https://github.com/evakerrigan/test_Picasso/blob/main/src/assets/404.png?raw=true"
               alt=""
               width={500} height={250}
             />
