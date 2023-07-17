@@ -48,10 +48,10 @@ export const PostItem = ({ post }: { post: PostItemProps }) => {
           <Typography>Переход на другую страницу</Typography>
         </Modal>
       )}
-      <Typography className="postUserId" >{userId}</Typography>
-      <Typography className="postId">{id}</Typography>
-      <Typography className="postTitle">{title}</Typography>
-      <Typography className="postBody">{body}</Typography>
+      <Typography style={{ fontWeight: "bold", color: "red", padding: "0 10px" }}>{userId}</Typography>
+      <Typography style={{ fontWeight: "bold", color: "green", padding: "0 10px" }}>{id}</Typography>
+      <Typography>{title}</Typography>
+      <Typography>{body}</Typography>
     </Box >
   );
 };
