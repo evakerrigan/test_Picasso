@@ -14,7 +14,7 @@ export const PostPage = (): JSX.Element => {
 
   const params = useParams();
 
-  const id = params.id?.substring(1);
+  const id = params.id;
 
   useEffect(() => {
     async function fetchPost(url: string) {

@@ -25,7 +25,7 @@ export const PostItem = ({ post }: { post: PostItemProps }) => {
   const handleModalClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setShowModal(false);
-    navigate(`/posts/:${id}`)
+    navigate(`/posts/${id}`)
   }
 
   return (
@@ -40,6 +40,7 @@ export const PostItem = ({ post }: { post: PostItemProps }) => {
         transitionDuration: "2s",
         '&:hover': {
           background: "#1976d2;",
+          color: "white"
         },
       }}
     >
