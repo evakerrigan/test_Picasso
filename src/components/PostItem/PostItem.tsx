@@ -1,8 +1,8 @@
-import "./PostItem.css";
 import { Modal } from "../Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
+import React from "react";
 
 type PostItemProps = {
   userId: number;
@@ -44,7 +44,7 @@ export const PostItem = ({ post }: { post: PostItemProps }) => {
       }}
     >
       {showModal && (
-        <Modal onClose={(event) => { handleModalClose(event) }} >
+        <Modal open={showModal} onClose={(event) => { handleModalClose(event) }} >
           <Typography>Переход на другую страницу</Typography>
         </Modal>
       )}

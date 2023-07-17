@@ -42,7 +42,7 @@ export const AddComment = ({ id }: { id: string }): JSX.Element => {
         <Button variant="contained" type="submit">Добавить комментарий</Button>
       </form>
       {showModalSendComment && (
-        <Modal onClose={(event) => { handleModalClose(event) }} >
+        <Modal open={showModalSendComment} onClose={(event) => { handleModalClose(event) }} >
           <Typography>Отправляем комментарий к посту</Typography>
         </Modal>
       )}
