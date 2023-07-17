@@ -22,12 +22,12 @@ export const PostPage = (): JSX.Element => {
       setPost(res.data);
       setUser(res.data.userId);
     }
-    fetchPost(`${URL_POSTS}` + "/" + `${id}`);
+    fetchPost(`${URL_POSTS}/${id}`);
     async function fetchComments(url: string) {
       const res = await axios.get(url);
       setComments(res.data);
     }
-    fetchComments(URL_POSTS + "/" + `${id}` + "/" + "comments");
+    fetchComments(`${URL_POSTS}/${id}/comments`);
   }, [id]);
 
   useEffect(() => {
