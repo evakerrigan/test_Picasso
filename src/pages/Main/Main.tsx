@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { PostList } from "../../components/";
 import { MySelect } from "../../components/UI/MySelect/MySelect";
@@ -9,6 +9,12 @@ export const Main = (): JSX.Element => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [users, setUsers] = useState<OptionProps[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>("");
+
+  useEffect(() => {
+    fetchPosts(URL_POSTS);
+    fetchUsers();
+  }, [])
+
 
   async function fetchPosts(url: string) {
     const res = await axios.get(url);
@@ -30,10 +36,7 @@ export const Main = (): JSX.Element => {
     }
   };
 
-  const handleFetch = () => {
-    fetchPosts(URL_POSTS);
-    fetchUsers();
-  };
+  if (!posts || !users) return <p>Loading...</p>;
 
   return (
     <div className="main">
@@ -43,7 +46,6 @@ export const Main = (): JSX.Element => {
         defaultValue="All"
         options={users}
       />
-      <button onClick={handleFetch}>Fetch Posts</button>
       <PostList posts={posts} />
     </div>
   );

@@ -1,8 +1,8 @@
 import axios from "axios";
-import { createPortal } from "react-dom";
 import { useState } from "react";
 import { URL_COMMENTS } from "../../constants";
 import { Modal } from "..";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 export const AddComment = ({ id }: { id: string }): JSX.Element => {
   const [newComment, setNewComment] = useState<string>("");
@@ -10,7 +10,6 @@ export const AddComment = ({ id }: { id: string }): JSX.Element => {
 
   const addComment = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('показываем модалку');
     setShowModalSendComment(true);
     try {
       const res = await axios.post(`${URL_COMMENTS}/${id}`);
@@ -24,25 +23,29 @@ export const AddComment = ({ id }: { id: string }): JSX.Element => {
   };
   const handleModalClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    console.log('закрываем модалку');
     setShowModalSendComment(false);
   }
 
   return (
-    <div>
-      <h3>Add Comment</h3>
+    <Box>
       <form onSubmit={addComment}>
-        <textarea
+        <TextField
+          id="filled-multiline-static"
+          label="Add comment"
+          multiline
+          rows={4}
+          variant="filled"
+          sx={{ width: "100%", margin: "1rem 0" }}
           value={newComment}
-          className="textarea"
           onChange={(e) => setNewComment(e.target.value)}
-        ></textarea>
-        <button type="submit">Add</button>
+        />
+        <Button variant="contained" type="submit">Добавить комментарий</Button>
       </form>
-      {showModalSendComment && createPortal(<Modal
-        children="Отправляем комментарий к посту"
-        onClose={(event) => { handleModalClose(event) }}
-      />, document.body)}
-    </div>
+      {showModalSendComment && (
+        <Modal onClose={(event) => { handleModalClose(event) }} >
+          <Typography>Отправляем комментарий к посту</Typography>
+        </Modal>
+      )}
+    </Box >
   );
 };

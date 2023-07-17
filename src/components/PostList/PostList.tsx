@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { PostItem } from "../PostItem/PostItem";
 
 type PostItemProps = {
@@ -13,10 +14,10 @@ type PostListProps = {
 
 export const PostList = ({ posts }: PostListProps) => {
   return (
-    <div className="PostList">
+    <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {posts.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}
-    </div>
+    </Box>
   );
 };

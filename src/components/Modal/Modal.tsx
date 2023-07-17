@@ -1,15 +1,17 @@
+import { Box } from "@mui/material";
 import "./Modal.css";
+import Button from '@mui/material/Button';
 
 type ModalProps = {
   onClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  children: string;
+  children: React.ReactNode;
 };
 
 export const Modal = ({ onClose, children }: ModalProps) => {
   return (
-    <div className="modal">
-      <div>{children}</div>
-      <button onClick={(event) => onClose(event)}>Close</button>
-    </div>
+    <Box className="modal">
+      <Box>{children}</Box>
+      <Button variant="contained" onClick={(event) => onClose(event)}>Close</Button>
+    </Box>
   )
 };

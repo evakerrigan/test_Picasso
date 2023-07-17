@@ -1,8 +1,8 @@
 import "./PostItem.css";
 import { Modal } from "../Modal/Modal";
-import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Box, Typography } from "@mui/material";
 
 type PostItemProps = {
   userId: number;
@@ -19,24 +19,39 @@ export const PostItem = ({ post }: { post: PostItemProps }) => {
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    console.log('создаем портал');
     setShowModal(true);
   }
 
   const handleModalClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    console.log('закрываем портал');
     setShowModal(false);
     navigate(`/posts/:${id}`)
   }
 
   return (
-    <div className="postItem" onClick={handleClick}>
-      {showModal && createPortal(<Modal children="Переход на другую страницу" onClose={(event) => { handleModalClose(event) }} />, document.body)}
-      <span className="postUserId">{userId}</span>
-      <span className="postId">{id}</span>
-      <span className="postTitle">{title}</span>
-      <p className="postBody">{body}</p>
-    </div >
+    <Box onClick={handleClick}
+      sx={{
+        cursor: "pointer",
+        backgroundColor: "white",
+        border: "1px solid #ccc",
+        padding: "1rem",
+        margin: "0.5rem",
+        width: "25%",
+        transitionDuration: "2s",
+        '&:hover': {
+          background: "blue",
+        },
+      }}
+    >
+      {showModal && (
+        <Modal onClose={(event) => { handleModalClose(event) }} >
+          <Typography>Переход на другую страницу</Typography>
+        </Modal>
+      )}
+      <Typography className="postUserId" >{userId}</Typography>
+      <Typography className="postId">{id}</Typography>
+      <Typography className="postTitle">{title}</Typography>
+      <Typography className="postBody">{body}</Typography>
+    </Box >
   );
 };
