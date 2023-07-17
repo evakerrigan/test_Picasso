@@ -28,7 +28,7 @@ export const PostPage = (): JSX.Element => {
       setComments(res.data);
     }
     fetchComments(URL_POSTS + "/" + `${id}` + "/" + "comments");
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     async function fetchUsers(url: string) {
