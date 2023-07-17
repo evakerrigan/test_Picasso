@@ -39,7 +39,7 @@ export const Main = (): JSX.Element => {
   if (!posts || !users) return <p>Loading...</p>;
 
   return (
-    <div className="main">
+    <div>
       <MySelect
         value={selectedSort}
         onChange={sortPosts}
