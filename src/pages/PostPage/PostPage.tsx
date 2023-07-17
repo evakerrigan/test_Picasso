@@ -56,8 +56,8 @@ export const PostPage = (): JSX.Element => {
           borderRadius: "4px",
           boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px"
         }}>
-          <Typography>user: {userInfo.id}</Typography>
-          <Typography>name: {userInfo.name}</Typography>
+          <Typography style={{ textAlign: "left" }}>user id: {userInfo.id}</Typography>
+          <Typography style={{ textAlign: "left" }}>user name: {userInfo.name}</Typography>
         </Box>
       </Box>
       <Box sx={{ width: "75%" }}>
@@ -70,9 +70,9 @@ export const PostPage = (): JSX.Element => {
           borderRadius: "4px",
           boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px"
         }}>
-          <Typography>id: {id}</Typography>
-          <Typography variant="h1" sx={{fontSize: "28px", color: "#000"}}>title: {post.title}</Typography>
-          <Typography sx={{fontSize: "20px", color: "#000"}}>body: {post.body}</Typography>
+          <Typography style={{ textAlign: "left" }}>post id: {id}</Typography>
+          <Typography variant="h1" sx={{ fontSize: "28px", color: "#000", textAlign: "left" }}>post title: {post.title}</Typography>
+          <Typography sx={{ fontSize: "20px", color: "#000", textAlign: "left" }}>post: {post.body}</Typography>
         </Box>
         <Box sx={{
           backgroundColor: "rgb(255, 255, 255)",
@@ -82,9 +82,9 @@ export const PostPage = (): JSX.Element => {
           boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px"
         }}>
           {comments.map((comment) => (
-            <Box key={comment.id} sx={{margin: "1rem 0", padding: "1rem", borderBottom: "1px solid #ccc" }}>
-              <Typography sx={{ color: "rgba(0, 0, 0, 0.87)" }}>name: {comment.name}</Typography>
-              <Typography sx={{ color: "rgba(0, 0, 0, 0.6)" }}>body: {comment.body}</Typography>
+            <Box key={comment.id} sx={{ margin: "1rem 0", padding: "1rem", borderBottom: "1px solid #ccc" }}>
+              <Typography sx={{ color: "rgba(0, 0, 0, 0.87)", textAlign: "left" }}>user name: {comment.name}</Typography>
+              <Typography sx={{ color: "rgba(0, 0, 0, 0.6)", textAlign: "left" }}>comment: {comment.body}</Typography>
             </Box>
           ))}
         </Box>

@@ -32,7 +32,7 @@ export const Main = (): JSX.Element => {
     if (sort === "All") {
       fetchPosts(URL_POSTS);
     } else {
-      fetchPosts(`${URL_POSTS}` + "?userId=" + sort);
+      fetchPosts(`${URL_POSTS}?userId=${sort}`);
     }
   };
 
