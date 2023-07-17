@@ -39,7 +39,7 @@ export const PostItem = ({ post }: { post: PostItemProps }) => {
         width: "25%",
         transitionDuration: "2s",
         '&:hover': {
-          background: "blue",
+          background: "#1976d2;",
         },
       }}
     >
