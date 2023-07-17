@@ -27,6 +27,9 @@
 # clone
 $ git clone https://github.com/evakerrigan/test_Picasso.git
 
+# go in to project
+$ cd test_Picasso
+
 # install
 $ npm install
 

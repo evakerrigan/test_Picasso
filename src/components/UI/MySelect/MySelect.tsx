@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
 import { OptionProps } from "../../../types";
 
 type MySelectProps = {
@@ -16,10 +16,11 @@ export const MySelect = ({
 }: MySelectProps) => {
   return (
     <FormControl sx={{ m: 1, width: 300 }}>
-      <InputLabel id="demo-multiple-name-label">All</InputLabel>
+      <InputLabel id="demo-multiple-name-label">Name</InputLabel>
       <Select
         value={value}
         onChange={(event) => onChange(event.target.value)}
+        input={<OutlinedInput label="Name" />}
       >
         <MenuItem value="All">{defaultValue}</MenuItem>
         {options.map((option) => (
