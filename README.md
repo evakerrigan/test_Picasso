@@ -44,4 +44,4 @@ https://test-picasso.vercel.app/
 
 ## Screenshot
 
-img
+![img](https://github.com/evakerrigan/test_Picasso/blob/main/src/assets/Screenshot.jpg?raw=true)
