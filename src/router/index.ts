@@ -10,10 +10,6 @@ export const routes = [
     component: PostPage,
   },
   {
-    path: "/not-found",
-    component: NotFound,
-  },
-  {
     path: "*",
     component: NotFound,
   },

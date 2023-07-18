@@ -31,7 +31,7 @@ export const PostPage = (): JSX.Element => {
 
   useEffect(() => {
     if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
-      navigate(`/not-found`);
+      navigate(`/${id}`);
     } else {
       fetchPost(`${URL_POSTS}/${id}`);
       fetchComments(`${URL_POSTS}/${id}/comments`);
@@ -48,11 +48,11 @@ export const PostPage = (): JSX.Element => {
       });
     }
     if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
-      navigate(`/not-found`);
+      navigate(`/${id}`);
     } else {
       fetchUsers(URL_USERS);
     }
-  }, [navigate, numberId, user]);
+  }, [id, navigate, numberId, user]);
 
   if (!post || !userInfo) return <p>Loading...</p>;
 
