@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AddComment } from "../../components/AddComment/AddComment";
 import { URL_POSTS, URL_USERS } from "../../constants";
 import { Comment, Post, UserInfo } from "../../types";
 import { Box, Typography } from "@mui/material";
 
 export const PostPage = (): JSX.Element => {
+  const navigate = useNavigate();
   const [comments, setComments] = useState<Comment[]>([]);
   const [post, setPost] = useState<Post | null>(null);
   const [user, setUser] = useState<number>();
@@ -16,19 +17,26 @@ export const PostPage = (): JSX.Element => {
 
   const id = params.id;
 
+  const numberId = Number(id);
+
+  async function fetchPost(url: string) {
+    const res = await axios.get(url);
+    setPost(res.data);
+    setUser(res.data.userId);
+  }
+  async function fetchComments(url: string) {
+    const res = await axios.get(url);
+    setComments(res.data);
+  }
+
   useEffect(() => {
-    async function fetchPost(url: string) {
-      const res = await axios.get(url);
-      setPost(res.data);
-      setUser(res.data.userId);
+    if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
+      navigate(`/not-found`);
+    } else {
+      fetchPost(`${URL_POSTS}/${id}`);
+      fetchComments(`${URL_POSTS}/${id}/comments`);
     }
-    fetchPost(`${URL_POSTS}/${id}`);
-    async function fetchComments(url: string) {
-      const res = await axios.get(url);
-      setComments(res.data);
-    }
-    fetchComments(`${URL_POSTS}/${id}/comments`);
-  }, [id]);
+  }, [id, navigate, numberId]);
 
   useEffect(() => {
     async function fetchUsers(url: string) {
@@ -39,8 +47,12 @@ export const PostPage = (): JSX.Element => {
         }
       });
     }
-    fetchUsers(URL_USERS);
-  }, [user]);
+    if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
+      navigate(`/not-found`);
+    } else {
+      fetchUsers(URL_USERS);
+    }
+  }, [navigate, numberId, user]);
 
   if (!post || !userInfo) return <p>Loading...</p>;
 

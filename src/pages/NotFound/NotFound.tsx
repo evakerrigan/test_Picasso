@@ -21,7 +21,7 @@ export const NotFound = () => {
     >
       <Container maxWidth="md">
         <Grid container spacing={2}>
-          <Grid xs={6}>
+          <Grid item xs={6}>
             <Typography variant="h1">
               404
             </Typography>
@@ -30,7 +30,7 @@ export const NotFound = () => {
             </Typography>
             <Button variant="contained" onClick={handleBackHome}>Back Home</Button>
           </Grid>
-          <Grid xs={6}>
+          <Grid item xs={6}>
             <img
               src="https://github.com/evakerrigan/test_Picasso/blob/main/src/assets/404.png?raw=true"
               alt=""
