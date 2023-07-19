@@ -31,7 +31,7 @@ export const PostPage = (): JSX.Element => {
 
   useEffect(() => {
     if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
-      navigate(`/${id}`);
+      navigate(`/${id}`, { replace: true });
     } else {
       fetchPost(`${URL_POSTS}/${id}`);
       fetchComments(`${URL_POSTS}/${id}/comments`);
