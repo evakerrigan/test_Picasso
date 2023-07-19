@@ -1,6 +1,7 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
+import img404 from '../../assets/404.png';
 
 export const NotFound = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export const NotFound = () => {
           </Grid>
           <Grid item xs={6}>
             <img
-              src="https://github.com/evakerrigan/test_Picasso/blob/main/src/assets/404.png?raw=true"
+              src={img404}
               alt=""
               width={500} height={500}
             />
