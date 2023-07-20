@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
-import { OptionProps } from "../../../types";
+import { UserInfo } from "../../../types";
 
 type MySelectProps = {
   defaultValue: string;
-  options: OptionProps[];
+  options: UserInfo[];
   value: string;
   onChange: (value: string) => void;
 };
