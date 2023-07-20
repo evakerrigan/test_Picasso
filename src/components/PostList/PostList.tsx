@@ -1,18 +1,8 @@
 import { Box } from "@mui/material";
 import { PostItem } from "../PostItem/PostItem";
+import { Post } from "../../types";
 
-type PostItemProps = {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-};
-
-type PostListProps = {
-  posts: PostItemProps[];
-};
-
-export const PostList = ({ posts }: PostListProps) => {
+export const PostList = ({ posts }: { posts: Post[] }) => {
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {posts.map((post) => (

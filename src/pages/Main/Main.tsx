@@ -1,42 +1,24 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { PostList } from "../../components/";
 import { MySelect } from "../../components/UI/MySelect/MySelect";
-import { URL_POSTS, URL_USERS } from "../../constants";
-import { OptionProps, Post } from "../../types";
+import {
+  useGetPostsQuery,
+  useGetUsersQuery,
+  useGetUserPostsQuery
+} from "../../api/api";
 
 export const Main = (): JSX.Element => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [users, setUsers] = useState<OptionProps[]>([]);
-  const [selectedSort, setSelectedSort] = useState<string>("");
+  const [selectedSort, setSelectedSort] = useState<string>("All");
 
-  useEffect(() => {
-    fetchPosts(URL_POSTS);
-    fetchUsers();
-  }, [])
-
-
-  async function fetchPosts(url: string) {
-    const res = await axios.get(url);
-    setPosts(res.data);
-  }
-
-  async function fetchUsers() {
-    const res = await axios.get(URL_USERS);
-    setUsers(res.data);
-  }
+  const { data: posts } = useGetPostsQuery();
+  const { data: users } = useGetUsersQuery();
+  const { data: userPosts } = useGetUserPostsQuery({ id: selectedSort });
 
   const sortPosts = (sort: string) => {
     setSelectedSort(sort);
-
-    if (sort === "All") {
-      fetchPosts(URL_POSTS);
-    } else {
-      fetchPosts(`${URL_POSTS}?userId=${sort}`);
-    }
   };
 
-  if (!posts || !users) return <p>Loading...</p>;
+  if (!posts || !users || !selectedSort) return <p>Loading...</p>;
 
   return (
     <div>
@@ -46,7 +28,11 @@ export const Main = (): JSX.Element => {
         defaultValue="All"
         options={users}
       />
-      <PostList posts={posts} />
+      {selectedSort === "All" ?
+        <PostList posts={posts || []} />
+        :
+        <PostList posts={userPosts || []} />
+        }
     </div>
   );
 };

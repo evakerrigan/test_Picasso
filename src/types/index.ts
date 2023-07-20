@@ -1,9 +1,9 @@
 export type UserInfo = {
   id: number;
-  email: string;
-  username: string;
-  name: string;
-  address: {
+  email?: string;
+  username?: string;
+  name?: string;
+  address?: {
     street: string;
     suite: string;
     city: string;
@@ -30,28 +30,28 @@ export type Post = {
   userId: number;
 };
 
-export type OptionProps = {
-  id: number;
-  name: string;
-  phone: string;
-  username: string;
-  website: string;
-  company: CompanyProps;
-  address: AddressProps;
-};
-type CompanyProps = {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-};
-type AddressProps = {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: GeoProps;
-};
-type GeoProps = {
-  lat: string;
-  lng: string;
-};
+// export type OptionProps = {
+//   id: number;
+//   name: string;
+//   phone: string;
+//   username: string;
+//   website: string;
+//   company: CompanyProps;
+//   address: AddressProps;
+// };
+// type CompanyProps = {
+//   name: string;
+//   catchPhrase: string;
+//   bs: string;
+// };
+// type AddressProps = {
+//   street: string;
+//   suite: string;
+//   city: string;
+//   zipcode: string;
+//   geo: GeoProps;
+// };
+// type GeoProps = {
+//   lat: string;
+//   lng: string;
+// };
