@@ -1,9 +1,9 @@
-export type UserInfo = {
+export type UserInfoDTO = {
   id: number;
-  email?: string;
-  username?: string;
-  name?: string;
-  address?: {
+  email: string;
+  username: string;
+  name: string;
+  address: {
     street: string;
     suite: string;
     city: string;
@@ -15,7 +15,7 @@ export type UserInfo = {
   };
 };
 
-export type Comment = {
+export type CommentDTO = {
   body: string;
   email: string;
   id: number;
@@ -23,35 +23,9 @@ export type Comment = {
   postId: number;
 };
 
-export type Post = {
+export type PostDTO = {
   body: string;
   id: number;
   title: string;
   userId: number;
 };
-
-// export type OptionProps = {
-//   id: number;
-//   name: string;
-//   phone: string;
-//   username: string;
-//   website: string;
-//   company: CompanyProps;
-//   address: AddressProps;
-// };
-// type CompanyProps = {
-//   name: string;
-//   catchPhrase: string;
-//   bs: string;
-// };
-// type AddressProps = {
-//   street: string;
-//   suite: string;
-//   city: string;
-//   zipcode: string;
-//   geo: GeoProps;
-// };
-// type GeoProps = {
-//   lat: string;
-//   lng: string;
-// };

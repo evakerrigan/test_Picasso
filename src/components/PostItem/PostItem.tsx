@@ -3,16 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { Post } from "../../types";
+import { PostDTO } from "../../types";
 
-// type PostItemProps = {
-//   userId: number;
-//   id: number;
-//   title: string;
-//   body: string;
-// };
-
-export const PostItem = ({ post }: { post: Post }) => {
+export const PostItem = ({ post }: { post: PostDTO }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const navigate = useNavigate();
 

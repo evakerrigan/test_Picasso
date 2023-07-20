@@ -1,60 +1,45 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { AddComment } from "../../components/AddComment/AddComment";
-import { URL_POSTS, URL_USERS } from "../../constants";
-import { Comment, Post, UserInfo } from "../../types";
 import { Box, Typography } from "@mui/material";
+import { useGetCommentsQuery, useGetPostQuery, useGetUsersQuery } from "../../api/api";
+import { CommentDTO, UserInfoDTO } from "../../types";
 
 export const PostPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [post, setPost] = useState<Post | null>(null);
-  const [user, setUser] = useState<number>();
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   const params = useParams();
 
   const id = params.id;
 
+  // проверка на неправильный id, если он неправильный, то переходит на страницу not found
   const numberId = Number(id);
-
-  async function fetchPost(url: string) {
-    const res = await axios.get(url);
-    setPost(res.data);
-    setUser(res.data.userId);
-  }
-  async function fetchComments(url: string) {
-    const res = await axios.get(url);
-    setComments(res.data);
+  if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
+    navigate(`/posts/${id}`, { replace: true });
   }
 
-  useEffect(() => {
-    if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
-      navigate(`/${id}`, { replace: true });
-    } else {
-      fetchPost(`${URL_POSTS}/${id}`);
-      fetchComments(`${URL_POSTS}/${id}/comments`);
-    }
-  }, [id, navigate, numberId]);
+  const { data: post } = useGetPostQuery({ idPost: id });
+  const { data: comments } = useGetCommentsQuery({ idPost: id });
+  const { data: users } = useGetUsersQuery();
+
+  const [user, setUser] = useState<number | undefined>();
+  const [userInfo, setUserInfo] = useState<UserInfoDTO | null>(null);
 
   useEffect(() => {
-    async function fetchUsers(url: string) {
-      const res = await axios.get(url);
-      res.data.filter((item: UserInfo) => {
-        if (item.id === user) {
-          setUserInfo(item);
-        }
-      });
-    }
-    if (Number.isNaN(numberId) || numberId < 1 || numberId > 100) {
-      navigate(`/${id}`);
-    } else {
-      fetchUsers(URL_USERS);
-    }
-  }, [id, navigate, numberId, user]);
+    setUser(post?.userId);
+  }, [id, post?.userId]);
 
-  if (!post || !userInfo) return <p>Loading...</p>;
+
+  useEffect(() => {
+    users?.forEach((item: UserInfoDTO) => {
+      if (item.id === user) {
+        setUserInfo(item);
+      }
+    });
+  }, [user, users]);
+
+
+  if (!post || !userInfo || !comments) return <p>Loading...</p>;
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
@@ -93,7 +78,7 @@ export const PostPage = (): JSX.Element => {
           borderRadius: "4px",
           boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px"
         }}>
-          {comments.map((comment) => (
+          {comments.map((comment: CommentDTO) => (
             <Box key={comment.id} sx={{ margin: "1rem 0", padding: "1rem", borderBottom: "1px solid #ccc" }}>
               <Typography sx={{ color: "rgba(0, 0, 0, 0.87)", textAlign: "left" }}>user name: {comment.name}</Typography>
               <Typography sx={{ color: "rgba(0, 0, 0, 0.6)", textAlign: "left" }}>comment: {comment.body}</Typography>
