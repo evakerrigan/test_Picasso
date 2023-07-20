@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { PostItem } from "../PostItem/PostItem";
-import { Post } from "../../types";
+import { PostDTO } from "../../types";
 
-export const PostList = ({ posts }: { posts: Post[] }) => {
+export const PostList = ({ posts }: { posts: PostDTO[] }) => {
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {posts.map((post) => (

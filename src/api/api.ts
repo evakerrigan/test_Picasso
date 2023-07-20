@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Post, UserInfo, Comment } from "../types";
+import { PostDTO, UserInfoDTO, CommentDTO } from "../types";
 
 export const postsApi = createApi({
   reducerPath: "postsApi",
@@ -7,23 +7,30 @@ export const postsApi = createApi({
     baseUrl: "https://jsonplaceholder.typicode.com/",
   }),
   endpoints: (builder) => ({
-    getPosts: builder.query<Post[], void>({
+    getPosts: builder.query<PostDTO[], void>({
       query: () => "posts",
     }),
-    getComments: builder.query<Comment[], void>({
-      query: () => "comments",
+    getPost: builder.query<PostDTO, { idPost: string | undefined }>({
+      query: ({ idPost }) => ({
+        url: `posts/${idPost}`,
+      }),
     }),
-    getUsers: builder.query<UserInfo[], void>({
+    getComments: builder.query<CommentDTO[], { idPost: string | undefined }>({
+      query: ({idPost}) => ({
+        url: `posts/${idPost}/comments`,
+      }),
+    }),
+    getUsers: builder.query<UserInfoDTO[], void>({
       query: () => "users",
     }),
-    getUserPosts: builder.query<Post[], { id: string }>({
-      query: ({ id }) => ({
-       url: id === "All" ? "posts":  `posts/?userId=${id}`,
-    }),
-    }),
-    getUser: builder.query<UserInfo, { id: number }>({
+    getUser: builder.query<UserInfoDTO, { id: number }>({
       query: ({ id }) => ({
         url: `users/${id}`,
+      }),
+    }),
+    getUserPosts: builder.query<PostDTO[], { id: string }>({
+      query: ({ id }) => ({
+        url: id === "All" ? "posts" : `posts/?userId=${id}`,
       }),
     }),
     addComment: builder.mutation({
@@ -32,8 +39,15 @@ export const postsApi = createApi({
         method: "POST",
         body: comment,
       }),
-    })
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useGetCommentsQuery, useGetUsersQuery, useGetUserPostsQuery, useAddCommentMutation } = postsApi;
+export const {
+  useGetPostQuery,
+  useGetPostsQuery,
+  useGetCommentsQuery,
+  useGetUsersQuery,
+  useGetUserPostsQuery,
+  useAddCommentMutation,
+} = postsApi;
